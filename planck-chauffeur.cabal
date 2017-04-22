@@ -1,0 +1,60 @@
+name:                planck-chauffeur
+version:             0.1.1.0
+synopsis:            Scotty/Blaze app to illustrate Planck/Chauffeur knowledge
+description:         Inspired by https://www.farnamstreetblog.com/2015/09/two-types-of-knowledge/
+homepage:            https://github.com/alanbuxton/planck-chauffeur#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Alan Buxton
+maintainer:          alanbuxton@gmail.com
+copyright:           2017 Alan Buxton
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+                    ,  Model
+                    ,  Generator
+                    ,  View
+  build-depends:       base >= 4.7 && < 5
+                     , random
+                     , normaldistribution >= 1.1.0.0
+                     , blaze-html
+                     , text
+                     , containers
+                     , directory
+  default-language:    Haskell2010
+
+executable planck-chauffeur-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , planck-chauffeur
+                     , scotty
+                     , containers
+                     , blaze-html
+                     , text
+                     , wai-middleware-static
+--                     , blaze-from-html
+  default-language:    Haskell2010
+
+test-suite planck-chauffeur-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  other-modules:       GeneratorSpec
+                     , LibSpec
+                     , Seeds
+  build-depends:       base
+                     , planck-chauffeur
+                     , hspec
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com//alanbuxton/planck-chauffeur
