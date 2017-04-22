@@ -43,9 +43,10 @@ graphPage pm ps cm cs ex pp s1 s2 s3 pls chs maxC maxP = docTypeHtml $ do
   body $ do
     h1 "Effects of Planck vs Chauffeur Knowledge"
     p $ do
-      "If this is your first time here, then follow this link to "
+      "If this is your first time here, please follow this link to "
       a ! href "https://github.com/alanbuxton/planck-chauffeur/blob/master/README.md" $ "read the background"
-    p "Choose parameters below:"
+      "."
+    p "Set parameters for the model below:"
     inputForm (toValue pm) (toValue ps) (toValue cm) (toValue cs) (toValue ex) (toValue pp) maxP
     div ! id "knowledgeChart" $ mempty
     script $ scoreChart s1 s2 s3
