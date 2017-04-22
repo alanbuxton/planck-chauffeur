@@ -39,7 +39,7 @@ graphPage pm ps cm cs ex pp s1 s2 s3 pls chs maxC maxP = docTypeHtml $ do
     script ! src "/js/jquery-3.2.1.min.js" $ mempty
     script ! src "/js/highcharts/code/highcharts.js" $ mempty
     title "Planck vs Chauffeur Knowledge Model"
-    link ! href "/styles.css" ! rel "stylesheet" ! type_ "text/css"
+    link ! href "/css/styles.css" ! rel "stylesheet" ! type_ "text/css"
   body $ do
     h1 "Effects of Planck vs Chauffeur Knowledge"
     inputForm (toValue pm) (toValue ps) (toValue cm) (toValue cs) (toValue ex) (toValue pp) maxP
