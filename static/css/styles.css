@@ -9,7 +9,7 @@ body {
   border-bottom-left-radius: 3px;
   box-sizing: border-box;
   color: #24292e;
-  max-width: 1480px;
+  max-width: 1280px;
 }
 
 h1 {
@@ -24,8 +24,8 @@ h2 {
 
 .distribChart {
   min-width: 310px;
-  max-width: 800px;
-  height: 400px;
+  max-width: 640px;
+  height: 300px;
   margin: 0 auto;
   padding-top: 24px;
   border: 1px solid #ddd;
@@ -34,8 +34,8 @@ h2 {
 #knowledgeChart {
   padding-top: 24px;
   min-width: 310px;
-  max-width: 1480px;
-  height: 600px;
+  max-width: 1024px;
+  height: 500px;
   margin: 0 auto;
 }
 
