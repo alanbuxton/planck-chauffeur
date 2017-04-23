@@ -17,7 +17,7 @@ inputForm pm ps cm cs ex pp maxP = form ! action "/run-model" $ do
       td $ input ! type_ "text" ! name "pm" ! id "pm" ! value pm ! size "3"
       td ! class_ "right" $ label ! for "cm" $ "Chauffeur Mean: "
       td $ input ! type_ "text" ! name "cm" ! id "cm" ! value cm ! size "3"
-      td ! class_ "right" $ label ! for "ex" $ "# People in Network: "
+      td ! class_ "right" $ label ! for "ex" $ "Number of people to ask: "
       td $ input ! type_ "text" ! name "ex" ! id "ex" ! value ex ! size "3"
       td $ toMarkup $ " (max " ++ show maxP ++ ")"
     tr $ do
@@ -71,7 +71,7 @@ scoreChart s1 s2 s3 =
     "    text: 'Quality of Knowledge by Size of Network'" ++
     "  }," ++
     "  xAxis: {" ++
-    "    title: {text: '# People in Network'}" ++
+    "    title: {text: 'Number of People Asked'}" ++
     "  }," ++ 
     "  yAxis: {" ++
     "    min: " ++ minY ++ "," ++
@@ -153,29 +153,44 @@ distribChart divid n vs maxY =
 
 explanatoryText :: Html
 explanatoryText = do
-  p $ toMarkup $ "The chart above shows how well (or badly) you do at getting the best possible " ++
-    "answer to a particular question depending on the network of people you ask. A higher " ++
-    "Knowledge Score on the Y axis means a better answer. Or, at least, what the model " ++
-    "thinks is a better answer."
-  p $ toMarkup $ "If the only colour you can see is green then great, you got the " ++
-    "best answer. The blue area shows where the model got it wrong. It mixed up a person's " ++
-    "Chauffeur Knowledge (the blue) with what they really know" ++
-    "The black part shows the best answer that you could have got from the network, if only you had managed to find the person with the " ++
-    "best Planck Knowledge." 
-  p $ toMarkup $ "The model generates a random network of people using the parameters you chose. Each person in this " ++
-    "network has a different Planck and Chauffeur Knowledge of the question topic. The model asks " ++ 
-    "the network for the answer. It starts by asking the first person, then the first two, then the first three, and so " ++
-    "on until the whole network has been asked. The X axis shows how the score you get changes as you increase " ++
-    "the number of people in the network who you ask."
-  p $ toMarkup $ "Each time, the model looks for the person within the group that it thinks has the best " ++
-    "knowledge on the subject. It might ask the person with the best Planck score, or it might mix up Planck and Chauffeur Knowledge, " ++
-    "and try to get the answer from a person with a high Chauffeur Knowledge instead. If you ask someone a question, the answer " ++
-    "you get will always be based on their Planck Knowledge. People with a high Chauffeur Knowledge and low Planck Knowledge are the problem, " ++
-    "unless you are able to tell the difference between the two."
-  p "Notice how the Blue and Black parts always increase. It's just the Green - what you really know - that jumps around."
+  p $ do
+    toMarkup $ "The chart above shows how well (or badly) you do at getting the best possible " ++
+      "answer to a particular question, depending on the network of people you ask. A higher " ++
+      "Knowledge Score on the Y axis means a better answer. Or, at least, what you " 
+    em "think"
+    " is a better answer."
+  p $ toMarkup $ "Suppose you need the answer to a question. It could be anything, for example " ++
+    "'Why is the sky blue?' or 'When were tiles first used on houses?' Now suppose that the only " ++
+    "way to get the answer is to ask people that you know to help you." 
+  p $ toMarkup $ "You ask the first person you know. She gives you what she thinks is the answer. " ++
+    "She might be confident or not, depending on how well she thinks she knows the subject. " ++
+    "You then ask the next person you know and see if you get a better answer, until you get all " ++
+    "they way through your network. The X axis shows how your knowledge of the subject changes " ++
+    "as you ask more and more people."
+  p $ do
+    "If the only colour you can see is "
+    strong "green" 
+    " then, great, you got the best answer."
+  p $ do
+    "The "
+    strong "blue"
+    toMarkup $ " area shows where your network got it wrong. At some point along the line you mixed up someone's " ++ 
+      "Planck Knowledge with his Chauffeur Knowledge. You gave ths person's opinion too much weight. " ++
+      "While you may "
+    em "think"
+    toMarkup $ " that you got the best answer, in fact you may well have got a worse answer than what you already had. " ++
+      "Either way you have a problem because what you "
+    em "think"
+    " you know is much more than what you "
+    em "really"
+    " know. The "
+    strong "black"
+    toMarkup $ " area shows the best answer that you could have got from your network, if only you had managed to " ++
+      "find the person with the best Planck Knowledge." 
+  p "Notice how the blue and black parts always increase. It's just the green - what you really know - that jumps around."
 
 explanatoryText2 :: Html
 explanatoryText2 = 
   p $ toMarkup $ "The charts below show the distribution of Planck and Chauffeur Knowledge that this model generated. " ++
-    "Of course you will get a better normal distribution as you increase the number of people in the network."
+    "Of course, you will get a better-looking normal distribution as you increase the number of people in the network."
 
