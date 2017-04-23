@@ -1,6 +1,6 @@
 # Planck Knowledge and Chauffeur Knowledge
 
-This project was inspired by the fabulous [Farnam Street's](https://www.farnamstreetblog.com/about/) post about the [Two Different Kinds of Knowledge]( www.farnamstreetblog.com/2015/09/two-types-of-knowledge/): On the one hand you have people who really know about a subject. The post refers to this type of knowledge as "Planck Knowledge". On the other hand are those people who know how to sound like they know the subject. These ones have "Chauffeur Knowledge".
+This project was inspired by the fabulous [Farnam Street's](https://www.farnamstreetblog.com/about/) post about the [Two Different Kinds of Knowledge](https://www.farnamstreetblog.com/2015/09/two-types-of-knowledge/): On the one hand you have people who really know about a subject. The post refers to this type of knowledge as "Planck Knowledge". On the other hand are those people who know how to sound like they know the subject. These ones have "Chauffeur Knowledge".
 
 Telling the difference between Chauffeur Knowledge and Planck Knowledge is a problem that plagues politics, business and media. How do you tell the difference between someone who has put the hard work in to truly understand a topic and someone who talks confidently based on an evening's internet research?
 
