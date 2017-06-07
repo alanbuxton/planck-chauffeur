@@ -3,36 +3,22 @@ module Lib where
 import Data.List (maximumBy)
 import Model
 
--- First Person -> The person in the network who we think
---                 knows the answer (highest perceived knowledge)
--- Rel -> Includes score we think we got from that person
+-- Rel -> Person we think has the best knowledge
 -- Second Person -> The person who has the highest Planck knowledge
 --                  in the network
-ask :: [Rel] -> (Person,Rel,Person)
-ask rs = (t1,percRel,t2)   
+ask :: [Rel] -> (Rel,Person)
+ask rs = (percRel,planckPers)  
   where percRel = highestPerceivedKn rs
         plRel = highestPlanckKn rs
-        t1 = target percRel
-        t2 = target plRel
-
-gotRightAnswer :: (Person,Rel,Person) -> Bool
-gotRightAnswer (Person {plKn = p1},_,Person {plKn = p2}) = p1 >= p2
+        planckPers = target plRel
 
 -- Perceived Planck Score
 -- Best Planck Score
 -- Actual Planck Score
-planckScores :: (Person,Rel,Person) -> (Double,Double,Double)
-planckScores (Person {plKn = p1}
-                ,Rel {perceivedKn = f,target = t}
-                ,Person {plKn = p2}) = (f t,p2,p1)
-
-gotRightAnswer' :: (Person, Rel, Person) -> String
-gotRightAnswer' (Person {name = n1, plKn = p1, chKn = c1},_,
-                 Person {name = n2, plKn = p2}) =
-                    "Should get " ++ show p2 ++ " from " ++ n2 ++
-                    ". Actual Planck Kn " ++ show p1 ++ " from " ++ n1 ++ 
-                    " with Chauffeur Kn " ++ show c1 ++ "."
-
+planckScores :: (Rel,Person) -> (Double,Double,Double)
+planckScores (Rel {perceivedKn = f,target = p1}
+                ,Person {plKn = s2}) = (f p1,s2,plKn p1)
+ 
 highestPerceivedKn :: [Rel] -> Rel
 highestPerceivedKn = maximumBy ordByPerceivedKn
 
@@ -52,5 +38,5 @@ runExamples [] = []
 runExamples rss@(_:rs) = runExample rss : runExamples rs
 
 getKnowledges :: (Person -> Double) -> [Rel] -> [Double]
-getKnowledges f xs = map (f . target) xs
+getKnowledges f = map (f . target) 
 
